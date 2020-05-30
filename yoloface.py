@@ -25,6 +25,8 @@ import os
 
 from utils import *
 
+yolo_bounding = []
+
 #####################################################################
 parser = argparse.ArgumentParser()
 parser.add_argument('--model-cfg', type=str, default='./cfg/yolov3-face.cfg',
@@ -120,6 +122,8 @@ def _main():
         faces = post_process(frame, outs, CONF_THRESHOLD, NMS_THRESHOLD)
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
+        yolo_bounding.append(faces)
+        bound.append(faces)
 
         # initialize the set of information we'll displaying on the frame
         info = [
