@@ -62,7 +62,7 @@ def draw_predict(frame, conf, left, top, right, bottom):
     cv2.putText(frame, text, (left, top - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.4,
                 COLOR_WHITE, 1)
 
-
+bboxes = []
 def post_process(frame, outs, conf_threshold, nms_threshold):
     frame_height = frame.shape[0]
     frame_width = frame.shape[1]
@@ -87,6 +87,8 @@ def post_process(frame, outs, conf_threshold, nms_threshold):
                 top = int(center_y - height / 2)
                 confidences.append(float(confidence))
                 boxes.append([left, top, width, height])
+                bbox.append([left, top, right, bottom])
+
 
     # Perform non maximum suppression to eliminate redundant
     # overlapping boxes with lower confidences.
@@ -137,7 +139,6 @@ class FPS:
         # compute the (approximate) frames per second
         return self._num_frames / self.elapsed()
 
-bbox = []
 def refined_box(left, top, width, height):
     right = left + width
     bottom = top + height
@@ -150,6 +151,6 @@ def refined_box(left, top, width, height):
     left = left - margin if (bottom - top - right + left) % 2 == 0 else left - margin - 1
 
     right = right + margin
-    bbox.append([left, top, right, bottom])
+
     
     return left, top, right, bottom
