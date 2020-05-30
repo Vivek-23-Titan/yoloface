@@ -62,10 +62,10 @@ def draw_predict(frame, conf, left, top, right, bottom):
     cv2.putText(frame, text, (left, top - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.4,
                 COLOR_WHITE, 1)
 
-bboxes = []
 def post_process(frame, outs, conf_threshold, nms_threshold):
     frame_height = frame.shape[0]
     frame_width = frame.shape[1]
+
 
     # Scan through all the bounding boxes output from the network and keep only
     # the ones with high confidence scores. Assign the box's class label as the
