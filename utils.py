@@ -87,7 +87,6 @@ def post_process(frame, outs, conf_threshold, nms_threshold):
                 top = int(center_y - height / 2)
                 confidences.append(float(confidence))
                 boxes.append([left, top, width, height])
-                bbox.append([left, top, right, bottom])
 
 
     # Perform non maximum suppression to eliminate redundant
