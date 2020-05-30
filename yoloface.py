@@ -122,8 +122,10 @@ def _main():
         faces = post_process(frame, outs, CONF_THRESHOLD, NMS_THRESHOLD)
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
-        yolo_bounding.append(faces)
-        bound.append(faces)
+        try:
+          yolo_bounding.append(faces)
+        except:
+          print("Try Harder")
 
         # initialize the set of information we'll displaying on the frame
         info = [
