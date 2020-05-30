@@ -137,6 +137,7 @@ class FPS:
         # compute the (approximate) frames per second
         return self._num_frames / self.elapsed()
 
+bbox = []
 def refined_box(left, top, width, height):
     right = left + width
     bottom = top + height
@@ -149,5 +150,6 @@ def refined_box(left, top, width, height):
     left = left - margin if (bottom - top - right + left) % 2 == 0 else left - margin - 1
 
     right = right + margin
-
+    bbox.append([left, top, right, bottom])
+    
     return left, top, right, bottom
