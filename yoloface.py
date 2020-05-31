@@ -25,8 +25,8 @@ import os
 
 from utils import *
 
+global yolo_bounding
 yolo_bounding = []
-count = 0
 
 #####################################################################
 parser = argparse.ArgumentParser()
@@ -67,7 +67,8 @@ net = cv2.dnn.readNetFromDarknet(args.model_cfg, args.model_weights)
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
-
+global count
+count = 0
 def _main():
     #wind_name = 'face detection using YOLOv3'
     #cv2.namedWindow(wind_name, cv2.WINDOW_NORMAL)
@@ -126,10 +127,10 @@ def _main():
         try:
           cv2.imwrite("/content/faces/"+str(count)+".jpg", faces)     # save frame as JPG file
           yolo_bounding.append(faces)
+          count = count + 1
         except:
           print("Try Harder")
         
-        count = count + 1
         # initialize the set of information we'll displaying on the frame
         info = [
             ('number of faces detected', '{}'.format(len(faces)))
