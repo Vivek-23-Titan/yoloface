@@ -52,7 +52,7 @@ def get_outputs_names(net):
 def draw_predict(frame, conf, left, top, right, bottom):
     
     # Draw a bounding box.
-    cv2.rectangle(frame, (left, top), (right, bottom), COLOR_YELLOW, 2)
+    cv2.rectangle(frame, (left-1, top-1), (right+1, bottom+1), COLOR_YELLOW, 2)
 
     text = '{:.2f}'.format(conf)
 
