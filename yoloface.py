@@ -165,7 +165,7 @@ def _main():
         # Save the output video to file
         if args.image:
             cv2.imwrite(os.path.join(args.output_dir, output_file), frame.astype(np.uint8))
-            cv2.imwrite(os.path.join(args.outputface_dir, outputface_file), face_array.astype(np.uint8))
+            cv2.imwrite(os.path.join(args.outputface_dir, outputface_file), face_array) #.astype(np.uint8))
 
         else:
             video_writer.write(frame.astype(np.uint8))
