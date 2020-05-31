@@ -140,7 +140,8 @@ def _main():
         print('#' * 60)
         #print(faces)
         frame1 = np.array(frame1)
-        #print(frame.shape)
+        print(frame1.shape)
+        print(frame.shape)
         bounding_box = np.array(bounding_box)
         print(bounding_box.shape)
         x1 = bounding_box[0,0]
