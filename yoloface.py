@@ -110,7 +110,6 @@ def _main():
     while True:
 
         has_frame, frame = cap.read()
-        #has_frame1, frame1 = cap.read()
 
 
         # Stop the program if reached end of video
@@ -141,7 +140,6 @@ def _main():
 
         try:
           bounding_box = np.array(bounding_box)
-          print(bounding_box.shape)
           x1 = bounding_box[0,0]
           y1 = bounding_box[0,1]
           x2 = bounding_box[0,2]
