@@ -132,26 +132,21 @@ def _main():
         outs = net.forward(get_outputs_names(net))
 
         # Remove the bounding boxes with low confidence
-        faces = post_process(frame, outs, CONF_THRESHOLD, NMS_THRESHOLD)
+        faces, bounding_box = post_process(frame, outs, CONF_THRESHOLD, NMS_THRESHOLD)
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
-        print(faces)
-        frame = np.array(frame)
-        print(frame.shape)
-        faces = np.array(faces)
-        x1 = faces[0,0]
-        y1 = faces[0,1]
-        x2 = x1 + faces[0,2]
-        y2 = y1 + faces[0,3]
+        #print(faces)
+        #frame = np.array(frame)
+        #print(frame.shape)
+        bounding_box = np.array(bounding_box)
+        print(bounding_box.shape)
+        x1 = bounding_box[0]
+        y1 = bounding_box[1]
+        x2 = bounding_box[2]
+        y2 = bounding_box[3]
         print(x1,x2,y1,y2)
         
         extracted_face = frame[y1:y2, x1:x2]
-        try:
-          cv2.imwrite("/content/faces/"+str(count)+".jpg", faces)     # save frame as JPG file
-          yolo_bounding.append(faces)
-          count = count + 1
-        except:
-          print("Try Harder")
         
         # initialize the set of information we'll displaying on the frame
         info = [
