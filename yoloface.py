@@ -140,10 +140,10 @@ def _main():
         #print(frame.shape)
         bounding_box = np.array(bounding_box)
         print(bounding_box.shape)
-        x1 = bounding_box[0]
-        y1 = bounding_box[1]
-        x2 = bounding_box[2]
-        y2 = bounding_box[3]
+        x1 = bounding_box[0,0]
+        y1 = bounding_box[0,1]
+        x2 = bounding_box[0,2]
+        y2 = bounding_box[0,3]
         print(x1,x2,y1,y2)
         
         extracted_face = frame[y1:y2, x1:x2]
