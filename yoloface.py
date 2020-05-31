@@ -111,7 +111,7 @@ def _main():
     while True:
 
         has_frame, frame = cap.read()
-        has_frame1, frame1 = cap.read()
+        #has_frame1, frame1 = cap.read()
 
 
         # Stop the program if reached end of video
@@ -133,13 +133,14 @@ def _main():
         # Runs the forward pass to get output of the output layers
         outs = net.forward(get_outputs_names(net))
         
+        frame1 = frame
 
         # Remove the bounding boxes with low confidence
         faces, bounding_box = post_process(frame, outs, CONF_THRESHOLD, NMS_THRESHOLD)
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
         #print(faces)
-        frame1 = np.array(frame1)
+        #frame1 = np.array(frame1)
         print(frame1.shape)
         print(frame.shape)
         bounding_box = np.array(bounding_box)
