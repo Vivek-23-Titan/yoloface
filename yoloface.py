@@ -88,7 +88,7 @@ def _main():
             sys.exit(1)
         cap = cv2.VideoCapture(args.image)
         output_file = args.image[:-4].rsplit('/')[-1] + '_yoloface.jpg'
-        outputface_file = args.image[:-4].rsplit('/')[-1] + '_yoloextractedface.jpg'
+        outputface_file = args.image[:-4].rsplit('/')[-1] + '_yoloextractedface.txt'
 
     elif args.video:
         if not os.path.isfile(args.video):
@@ -135,6 +135,7 @@ def _main():
         faces = post_process(frame, outs, CONF_THRESHOLD, NMS_THRESHOLD)
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
+        print(faces)
         try:
           cv2.imwrite("/content/faces/"+str(count)+".jpg", faces)     # save frame as JPG file
           yolo_bounding.append(faces)
@@ -155,7 +156,7 @@ def _main():
         # Save the output video to file
         if args.image:
             cv2.imwrite(os.path.join(args.output_dir, output_file), frame.astype(np.uint8))
-            cv2.imwrite(os.path.join(args.outputface_dir, outputface_file), frame.astype(np.uint8))
+            #cv2.imwrite(os.path.join(args.outputface_dir, outputface_file), faces)
 
         else:
             video_writer.write(frame.astype(np.uint8))
