@@ -136,11 +136,13 @@ def _main():
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
         print(faces)
+        frame = np.array(frame)
+        print(frame.shape)
         faces = np.array(faces)
         x1 = faces[0,0]
-        y2 = faces[0,1]
+        y1 = faces[0,1]
         x2 = x1 + faces[0,2]
-        y1 = y2 + faces[0,3]
+        y2 = y1 - faces[0,3]
         print(x1,x2,y1,y2)
         
         extracted_face = frame[y1:y2, x1:x2]
