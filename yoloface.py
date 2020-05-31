@@ -130,6 +130,7 @@ def _main():
         outs = net.forward(get_outputs_names(net))
         
 
+        face_array = []
         # Remove the bounding boxes with low confidence
         faces, bounding_box = post_process(frame, outs, CONF_THRESHOLD, NMS_THRESHOLD)
         print('[i] ==> # detected faces: {}'.format(len(faces)))
