@@ -79,6 +79,8 @@ def _main():
     #cv2.namedWindow(wind_name, cv2.WINDOW_NORMAL)
 
     output_file = ''
+    outputface_file = ''
+    
 
     if args.image:
         if not os.path.isfile(args.image):
@@ -86,6 +88,8 @@ def _main():
             sys.exit(1)
         cap = cv2.VideoCapture(args.image)
         output_file = args.image[:-4].rsplit('/')[-1] + '_yoloface.jpg'
+        outputface_file = args.image[:-4].rsplit('/')[-1] + '_yoloextractedface.jpg'
+
     elif args.video:
         if not os.path.isfile(args.video):
             print("[!] ==> Input video file {} doesn't exist".format(args.video))
@@ -112,6 +116,8 @@ def _main():
         if not has_frame:
             print('[i] ==> Done processing!!!')
             print('[i] ==> Output file is stored at', os.path.join(args.output_dir, output_file))
+            print('[i] ==> Outputface file is stored at', os.path.join(args.outputface_dir, outputface_file))
+
             cv2.waitKey(1000)
             break
 
@@ -149,7 +155,7 @@ def _main():
         # Save the output video to file
         if args.image:
             cv2.imwrite(os.path.join(args.output_dir, output_file), frame.astype(np.uint8))
-            cv2.imwrite(os.path.join(args.outputface_dir, faces), frame.astype(np.uint8))
+            cv2.imwrite(os.path.join(args.outputface_dir, outputface_file), frame.astype(np.uint8))
 
         else:
             video_writer.write(frame.astype(np.uint8))
