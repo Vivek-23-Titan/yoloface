@@ -72,8 +72,7 @@ net = cv2.dnn.readNetFromDarknet(args.model_cfg, args.model_weights)
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
-global count
-count = 0
+
 def _main():
     #wind_name = 'face detection using YOLOv3'
     #cv2.namedWindow(wind_name, cv2.WINDOW_NORMAL)
@@ -133,25 +132,21 @@ def _main():
         # Runs the forward pass to get output of the output layers
         outs = net.forward(get_outputs_names(net))
         
-        frame1 = frame
 
         # Remove the bounding boxes with low confidence
         faces, bounding_box = post_process(frame, outs, CONF_THRESHOLD, NMS_THRESHOLD)
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
-        #print(faces)
-        #frame1 = np.array(frame1)
-        print(frame1.shape)
-        print(frame.shape)
+
+
         bounding_box = np.array(bounding_box)
         print(bounding_box.shape)
         x1 = bounding_box[0,0]
         y1 = bounding_box[0,1]
         x2 = bounding_box[0,2]
         y2 = bounding_box[0,3]
-        print(x1,x2,y1,y2)
         
-        extracted_face = frame1[y1:y2, x1:x2]
+        extracted_face = frame[y1:y2, x1:x2]
         
         # initialize the set of information we'll displaying on the frame
         info = [
