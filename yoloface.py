@@ -136,6 +136,7 @@ def _main():
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
         print(faces)
+        faces = np.array(faces)
         x1 = faces[0,0]
         y2 = faces[0,1]
         x2 = x1 + faces[0,2]
