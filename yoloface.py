@@ -142,7 +142,7 @@ def _main():
         x1 = faces[0,0]
         y1 = faces[0,1]
         x2 = x1 + faces[0,2]
-        y2 = y1 - faces[0,3]
+        y2 = y1 + faces[0,3]
         print(x1,x2,y1,y2)
         
         extracted_face = frame[y1:y2, x1:x2]
