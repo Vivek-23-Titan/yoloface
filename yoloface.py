@@ -25,8 +25,6 @@ import os
 
 from utils import *
 
-global yolo_bounding
-yolo_bounding = []
 
 #####################################################################
 parser = argparse.ArgumentParser()
@@ -146,6 +144,10 @@ def _main():
           y2 = bounding_box[0,3]
 
           extracted_face = frame[y1:y2, x1:x2]
+          image = Image.fromarray(extracted_face)
+          required_size=(224, 224)
+          image = image.resize(required_size)
+          face_array = np.array(image)
         except:
           pass
         
@@ -162,7 +164,7 @@ def _main():
         # Save the output video to file
         if args.image:
             cv2.imwrite(os.path.join(args.output_dir, output_file), frame.astype(np.uint8))
-            cv2.imwrite(os.path.join(args.outputface_dir, outputface_file), extracted_face.astype(np.uint8))
+            cv2.imwrite(os.path.join(args.outputface_dir, outputface_file), face_array.astype(np.uint8))
 
         else:
             video_writer.write(frame.astype(np.uint8))
