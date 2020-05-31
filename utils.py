@@ -50,6 +50,7 @@ def get_outputs_names(net):
 
 # Draw the predicted bounding box
 def draw_predict(frame, conf, left, top, right, bottom):
+    
     # Draw a bounding box.
     cv2.rectangle(frame, (left, top), (right, bottom), COLOR_YELLOW, 2)
 
@@ -73,6 +74,7 @@ def post_process(frame, outs, conf_threshold, nms_threshold):
     confidences = []
     boxes = []
     final_boxes = []
+    bbox = []
     for out in outs:
         for detection in out:
             scores = detection[5:]
@@ -106,7 +108,8 @@ def post_process(frame, outs, conf_threshold, nms_threshold):
         # draw_predict(frame, confidences[i], left, top, left + width,
         #              top + height)
         draw_predict(frame, confidences[i], left, top, right, bottom)
-    return final_boxes
+        bbox.append([left, top, right, bottom])
+    return final_boxes, bbox
 
 
 class FPS:
