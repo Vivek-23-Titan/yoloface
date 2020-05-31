@@ -26,6 +26,7 @@ import os
 from utils import *
 
 yolo_bounding = []
+count = 0
 
 #####################################################################
 parser = argparse.ArgumentParser()
@@ -123,10 +124,12 @@ def _main():
         print('[i] ==> # detected faces: {}'.format(len(faces)))
         print('#' * 60)
         try:
+          cv2.imwrite("/content/faces/"+str(count)+".jpg", faces)     # save frame as JPG file
           yolo_bounding.append(faces)
         except:
           print("Try Harder")
-
+        
+        count = count + 1
         # initialize the set of information we'll displaying on the frame
         info = [
             ('number of faces detected', '{}'.format(len(faces)))
