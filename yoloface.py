@@ -43,6 +43,8 @@ parser.add_argument('--src', type=int, default=0,
                     help='source of the camera')
 parser.add_argument('--output-dir', type=str, default='outputs/',
                     help='path to the output directory')
+parser.add_argument('--outputface-dir', type=str, default='faces/',
+                    help='path to the output face directory')
 args = parser.parse_args()
 
 #####################################################################
@@ -58,8 +60,11 @@ print('###########################################################\n')
 if not os.path.exists(args.output_dir):
     print('==> Creating the {} directory...'.format(args.output_dir))
     os.makedirs(args.output_dir)
+    print('==> Creating the {} directory...'.format(args.outputface_dir))
+    os.makedirs(args.outputface_dir)
 else:
     print('==> Skipping create the {} directory...'.format(args.output_dir))
+    print('==> Skipping create the {} directory...'.format(args.outputface_dir))
 
 # Give the configuration and weight files for the model and load the network
 # using them.
@@ -144,6 +149,8 @@ def _main():
         # Save the output video to file
         if args.image:
             cv2.imwrite(os.path.join(args.output_dir, output_file), frame.astype(np.uint8))
+            cv2.imwrite(os.path.join(args.outputface_dir, faces), frame.astype(np.uint8))
+
         else:
             video_writer.write(frame.astype(np.uint8))
 
