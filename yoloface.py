@@ -151,7 +151,6 @@ def _main():
           required_size=(224, 224)
           image = image.resize(required_size)
           face_array = np.array(image)
-          print("Face_Array:", face_array.shape)
         except:
           pass
         
