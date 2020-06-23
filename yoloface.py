@@ -146,7 +146,9 @@ def _main():
           x2 = bounding_box[0,2]
           y2 = bounding_box[0,3]
 
-          extracted_face = frame[y1:y2, x1:x2]
+          #extracted_face = frame[y1:y2, x1:x2]
+          extracted_face = frame[y1:y1+(y2-y1)//2, x1:x1+(x2-x1)//2]
+
           image = Image.fromarray(extracted_face)
           required_size=(224, 224)
           image = image.resize(required_size)
