@@ -153,8 +153,10 @@ def _main():
           required_size=(224, 224)
           image = image.resize(required_size)
           face_array = np.array(image)
+          print(face_array.shape)
         except:
-          pass
+          print("Somethings not right")
+          #pass
         
         # initialize the set of information we'll displaying on the frame
         info = [
