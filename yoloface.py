@@ -145,9 +145,11 @@ def _main():
           y1 = bounding_box[0,1]
           x2 = bounding_box[0,2]
           y2 = bounding_box[0,3]
+          
+          print(x1,x2,y1,y2)
 
           #extracted_face = frame[y1:y2, x1:x2]
-          extracted_face = frame[y1:(y1-y2)//2, x1:x2]
+          extracted_face = frame[(y2-y1)//2:y2, x1:x2]
 
           image = Image.fromarray(extracted_face)
           required_size=(224, 224)
